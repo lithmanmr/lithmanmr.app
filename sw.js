@@ -1,36 +1,22 @@
-const CACHE='asistapp-v1';
-const ASSETS=[
+const CACHE = 'asistapp-v1';
+const ASSETS = [
   './',
   './index.html',
   './manifest.json',
-  './assets/ceim.jpeg',
-  './assets/app.jpg',
-  './assets/app(1).jpg',
-  './assets/fonts/Roboto-Regular.ttf',
-  './assets/fonts/Roboto-Bold.ttf',
-  'https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js',
+  './assets/icon-192.jpg',
+  './assets/icon-512.jpg'
 ];
 
-self.addEventListener('install',e=>{
-  e.waitUntil(
-    caches.open(CACHE).then(c=>c.addAll(ASSETS))
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE).then(cache => cache.addAll(ASSETS))
   );
-  self.skipWaiting();
 });
 
-self.addEventListener('activate',e=>{
-  e.waitUntil(
-    caches.keys().then(keys=>
-      Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))
-    )
-  );
-  self.clients.claim();
-});
-
-self.addEventListener('fetch',e=>{
-  e.respondWith(
-    caches.match(e.request).then(cached=>cached||fetch(e.request)).catch(()=>caches.match('./index.html'))
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      return cached || fetch(event.request);
+    })
   );
 });
