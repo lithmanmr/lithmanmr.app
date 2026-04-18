@@ -1164,18 +1164,6 @@ function generarPDF(evId){
   doc.text(`Asistencia: ${pct}%`,PW-MR,y+4.5,{align:'right'});
   y+=13;
 
-  // Resumen por estado
-  doc.setFillColor(245,248,255);
-  doc.setDrawColor(220,225,240);
-  doc.setLineWidth(0.4);
-  doc.roundedRect(ML,y,CW,12,3,3,'FD');
-  doc.setFontSize(8.5);doc.setFont(FF,'bold');
-  const resumen=`Presentes: ${pres}   |   Tardanzas: ${tard}   |   Ausentes: ${ause}   |   Total: ${total}   |   Asistencia: ${pct}%`;
-  const colResumen=pct>=70?[22,163,74]:pct>=50?[217,119,6]:[220,38,38];
-  doc.setTextColor(...colResumen);
-  doc.text(resumen,PW/2,y+8,{align:'center'});
-  y+=18;
-
   // Titulo tabla
   doc.setFontSize(9.5);doc.setFont('helvetica','bold');doc.setTextColor(15,23,42);
   doc.text('LISTA DE ALUMNOS',ML,y+6);
@@ -1338,6 +1326,5 @@ if('serviceWorker' in navigator){
 
 <!-- INLINE MANIFEST & SW -->
  <link rel="manifest" href="manifest.json">
- <link rel="apple-touch-icon" href="/lithmanmr.app/assets/app.jpg">
 </body>
 </html>
