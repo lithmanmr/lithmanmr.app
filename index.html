@@ -56,7 +56,7 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:#0D1117}
   display:flex;flex-direction:column;
   height:100%;height:100dvh;
   max-width:480px;margin:0 auto;
-  position:relative;
+  position:relative;overflow:hidden;
   background:var(--bg);
 }
 
@@ -121,15 +121,10 @@ html,body{height:100%;height:100dvh;overflow:hidden;background:#0D1117}
 /* ====== BOTTOM NAV ====== */
 #nav{
   display:flex;
-  padding-bottom:calc(var(--safe-bot) + 2px);
+  padding-bottom:0;
   background:var(--bg1);
   border-top:1px solid var(--border);
   flex-shrink:0;
-  position:fixed;
-  bottom:0;left:0;right:0;
-  z-index:200;
-  max-width:480px;
-  margin:0 auto;
 }
 .nitem{
   flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -370,7 +365,6 @@ textarea.finput{resize:none;min-height:72px}
 <!-- TOAST -->
 <div id="toast"></div>
 
-<!-- HEADER -->
 <div id="header">
   <div class="hdr-brand">
     <div class="hdr-logo">&#128203;</div>
@@ -379,6 +373,9 @@ textarea.finput{resize:none;min-height:72px}
   <div class="hdr-actions">
     <button class="hbtn" id="hdr-add-btn" onclick="openModal('mevento')" title="Nuevo evento">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="display:block;color:#F0F6FF"><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
+    </button>
+    <button class="hbtn" onclick="openModal('macerca')" title="Acerca de" style="font-size:18px;color:#F0F6FF">
+      ℹ️
     </button>
   </div>
 </div>
@@ -426,7 +423,7 @@ textarea.finput{resize:none;min-height:72px}
     </div>
     <div class="qarow">
       <input class="finput" id="qa-name" placeholder="Nombre completo">
-      <input class="finput" id="qa-code" placeholder="Cod.">
+      <input class="finput" id="qa-code" placeholder="Cód.">
       <button class="btn btn-primary btn-xs" style="flex-shrink:0;padding:0 14px;height:48px" onclick="quickAdd()">+</button>
     </div>
     <div id="al-list"></div>
@@ -475,12 +472,12 @@ textarea.finput{resize:none;min-height:72px}
       <input type="hidden" id="mev-id">
       <div class="frow">
         <label class="flabel">Nombre del evento / sesión *</label>
-        <input class="finput" id="mev-nombre" placeholder="Ej: Clase 3 - Termodinamica">
+        <input class="finput" id="mev-nombre" placeholder="Ej: Clase 3 - Matemática">
       </div>
       <div class="fgrid">
         <div class="frow">
           <label class="flabel">Curso *</label>
-          <input class="finput" id="mev-curso" placeholder="Ej: Fisica II">
+          <input class="finput" id="mev-curso" placeholder="Ej: Física">
         </div>
         <div class="frow">
           <label class="flabel">Docente</label>
@@ -571,6 +568,76 @@ textarea.finput{resize:none;min-height:72px}
   </div>
 </div>
 
+<!-- MODAL: ACERCA DE -->
+<div id="macerca" style="display:none">
+  <div class="overlay" onclick="closeModal('macerca')">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="mhandle"></div>
+
+      <!-- Logo y nombre de la app -->
+      <div style="text-align:center;margin-bottom:22px">
+        <div style="width:72px;height:72px;border-radius:20px;background:linear-gradient(145deg,#4F8EF7,#22C55E);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 12px">📋</div>
+        <div style="font-size:22px;font-weight:800;letter-spacing:-.5px">AsistAPP</div>
+        <div style="font-size:12px;color:var(--t2);margin-top:3px">Versión 1.0.0</div>
+      </div>
+
+      <!-- Descripción -->
+      <div class="card card-sm" style="margin-bottom:10px">
+        <div class="sec-lbl" style="margin-top:0">¿Qué hace esta app?</div>
+        <p style="font-size:13px;color:var(--t2);line-height:1.7">
+          AsistAPP es una herramienta de <strong style="color:var(--t1)">asistencia digital sin papel</strong> diseñada para docentes y delegados. Permite crear eventos/sesiones, registrar la asistencia de alumnos (presente, tardanza, ausente) y generar reportes PDF listos para imprimir o compartir.
+        </p>
+      </div>
+
+      <!-- Funcionalidades -->
+      <div class="card card-sm" style="margin-bottom:10px">
+        <div class="sec-lbl" style="margin-top:0">Funcionalidades</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-size:18px">📅</span>
+            <div><div style="font-size:13px;font-weight:700">Eventos</div><div style="font-size:12px;color:var(--t2)">Crea sesiones con fecha, hora, aula y docente</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-size:18px">✅</span>
+            <div><div style="font-size:13px;font-weight:700">Asistencia</div><div style="font-size:12px;color:var(--t2)">Marca presente, tardanza o ausente por alumno</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-size:18px">👥</span>
+            <div><div style="font-size:13px;font-weight:700">Directorio</div><div style="font-size:12px;color:var(--t2)">Importa listas completas o agrega uno por uno</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-size:18px">📄</span>
+            <div><div style="font-size:13px;font-weight:700">Reportes PDF</div><div style="font-size:12px;color:var(--t2)">Genera y comparte el reporte con firmas incluidas</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <span style="font-size:18px">💾</span>
+            <div><div style="font-size:13px;font-weight:700">Sin internet</div><div style="font-size:12px;color:var(--t2)">Todo se guarda localmente en tu dispositivo</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desarrollador -->
+      <div class="card card-sm" style="margin-bottom:18px">
+        <div class="sec-lbl" style="margin-top:0">Desarrollador</div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:46px;height:46px;border-radius:14px;background:rgba(79,142,247,.15);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">👨‍💻</div>
+          <div>
+            <div style="font-size:14px;font-weight:700">Lithman A. Morales Rivera</div>
+            <div style="font-size:12px;color:var(--t2);margin-top:2px">lithmanmr1011@gmail.com</div>
+            <div style="font-size:12px;color:var(--t2)">+51 917 524 248</div>
+          </div>
+        </div>
+        <div class="div" style="margin:12px 0"></div>
+        <div style="font-size:12px;color:var(--t3);line-height:1.6">
+          Hecho con ❤️ para digitalizar la asistencia universitaria.
+        </div>
+      </div>
+
+      <button class="btn btn-ghost" onclick="closeModal('macerca')">Cerrar</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL: CONFIRMAR -->
 <div id="mconfirm" style="display:none">
   <div class="overlay" onclick="closeModal('mconfirm')">
@@ -641,16 +708,7 @@ function avColor(n){
 }
 function strip(s){
   if(!s) return '';
-  return s
-    .replace(/á/g,'a').replace(/Á/g,'A')
-    .replace(/é/g,'e').replace(/É/g,'E')
-    .replace(/í/g,'i').replace(/Í/g,'I')
-    .replace(/ó/g,'o').replace(/Ó/g,'O')
-    .replace(/ú/g,'u').replace(/Ú/g,'U')
-    .replace(/ü/g,'u').replace(/Ü/g,'U')
-    .replace(/ñ/g,'n').replace(/Ñ/g,'N')
-    .replace(/[^\x00-\x7F]/g,'?')
-    .trim();
+  return s.replace(/[^\x00-\x7F\u00C0-\u024F]/g,'?').trim();
 }
 
 // ========== NAV ==========
@@ -1034,11 +1092,23 @@ function renderReportesPage(){
   }).join('');
 }
 
-function generarPDF(evId){
+async function generarPDF(evId){
   const ev=DB.eventos.find(e=>e.id===evId);
   if(!ev)return;
   const {jsPDF}=window.jspdf;
   const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+
+  const fontResponse = await fetch('fonts/Roboto-Regular.ttf');
+  const fontBuffer = await fontResponse.arrayBuffer();
+  const uint8Array = new Uint8Array(fontBuffer);
+  let binary = '';
+  for (let i = 0; i < uint8Array.length; i++) {
+    binary += String.fromCharCode(uint8Array[i]);
+  }
+  const fontBase64 = btoa(binary);
+  doc.addFileToVFS('Roboto-Regular.ttf', fontBase64);
+  doc.addFont('Roboto-Regular.ttf', 'Roboto', 'normal');
+  doc.setFont('Roboto');
   const PW=210,PH=297,ML=15,MR=15,CW=180;
 
   const nombre=strip(ev.nombre)||'Sesion';
@@ -1072,7 +1142,7 @@ function generarPDF(evId){
     doc.setFontSize(11);doc.setFont('helvetica','bold');doc.setTextColor(30,41,59);
     doc.text(curso||'Registro de Asistencia',ML,16);
     doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor(100,116,139);
-    doc.text('Registro de Asistencia - CEIM',ML,22);
+    doc.text('Ingeniería de Minas',ML,22);
 
     const logoW=10,logoH=10,logoX=(PW-logoW)/2,logoY=8;
     let logoOk=false;
@@ -1091,7 +1161,7 @@ function generarPDF(evId){
     }
 
     doc.setFontSize(8.5);doc.setFont('helvetica','bold');doc.setTextColor(30,41,59);
-    doc.text(`Pag. ${pageNum} / ${totalPages}`,PW-MR,16,{align:'right'});
+    doc.text(`Pág. ${pageNum} / ${totalPages}`,PW-MR,16,{align:'right'});
     doc.setFont('helvetica','normal');doc.setTextColor(100,116,139);
     doc.text(genDate,PW-MR,22,{align:'right'});
   }
@@ -1100,13 +1170,19 @@ function generarPDF(evId){
     doc.setDrawColor(220,225,240);doc.setLineWidth(0.3);
     doc.line(ML,PH-13,PW-MR,PH-13);
     doc.setFontSize(7.5);doc.setFont('helvetica','normal');doc.setTextColor(100,116,139);
-    doc.text('AsistAPP - Sistema Digital de Asistencia',ML,PH-8);
+    doc.text('Sistema Digital de Asistencia',ML,PH-8);
     doc.text(`Generado el ${genDate} a las ${genTime}`,PW-MR,PH-8,{align:'right'});
   }
 
   drawHeader(1,1);
   drawFooter();
   let y=39;
+
+
+  // Título reunión
+  doc.setFontSize(14);doc.setFont('Roboto','normal');doc.setTextColor(15,23,42);
+  doc.text('DATOS DE LA REUNIÓN',PW/2,y+6,{align:'center'});
+  y+=12;
 
   // Bloque info evento
   doc.setFillColor(255,255,255);doc.setDrawColor(220,225,240);doc.setLineWidth(0.4);
@@ -1129,7 +1205,7 @@ function generarPDF(evId){
   const infoRows=[
     [['Curso:',curso||'--'],['Docente:',docente||'No especificado']],
     [['Fecha:',fecha],['Horario:',horario]],
-    [['Aula:',aula],obs?['Obs.:',obs.slice(0,38)+(obs.length>38?'...':'')]:null],
+    [['Aula/Lugar:',aula],obs?['Obs.:',obs.slice(0,38)+(obs.length>38?'...':'')]:null],
   ];
   let iy=y+21;
   for(const row of infoRows){
@@ -1189,10 +1265,10 @@ function generarPDF(evId){
     startY:y+10,
     margin:{left:ML,right:MR,top:37,bottom:22},
     tableWidth:CW,
-    head:[['N°','Nombre Completo','Codigo','Estado']],
+    head:[['N°','Nombre Completo','Código','Estado']],
     body:sorted.map((a,i)=>[i+1,strip(a.nombre),a.codigo||'--',stMap[a.st]||'--']),
     styles:{
-      font:'helvetica',fontSize:9,
+      font:'Roboto',fontSize:9,
       cellPadding:{top:5,bottom:5,left:5,right:5},
       lineColor:[220,225,240],lineWidth:0.25,
       overflow:'linebreak',valign:'middle',
@@ -1265,6 +1341,10 @@ function generarPDF(evId){
   doc.text(
     'Este documento fue generado digitalmente por AsistAPP.',
     PW/2,fy+84,{align:'center'}
+  );
+  doc.text(
+    'Powered by Lithman Morales',
+    PW/2,fy+91,{align:'center'}
   );
 
   // Actualizar encabezados con total de paginas correcto
