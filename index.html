@@ -371,7 +371,7 @@ textarea.finput{resize:none;min-height:72px}
     <div class="hdr-title">AsistAPP</div>
   </div>
   <div class="hdr-actions">
-    <button class="hbtn" id="hdr-add-btn" onclick="openModal('mevento')" title="Nuevo evento">
+    <button class="hbtn" id="hdr-add-btn" onclick="showNewEvento()" title="Nuevo evento">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="display:block;color:#F0F6FF"><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
     </button>
     <button class="hbtn" onclick="openModal('macerca')" title="Acerca de" style="font-size:18px;color:#F0F6FF">
@@ -459,7 +459,7 @@ textarea.finput{resize:none;min-height:72px}
 </nav>
 
 <!-- FAB -->
-<button id="fab" onclick="openModal('mevento')">+</button>
+<button id="fab" onclick="openModal('mevento')" style="display:none">+</button>
 
 </div><!-- /root -->
 
@@ -718,7 +718,7 @@ function go(page, evId){
   document.querySelectorAll('.nitem').forEach(n=>n.classList.remove('on'));
   document.getElementById('p-'+page).classList.add('active');
   document.querySelector(`.nitem[data-p="${page}"]`)?.classList.add('on');
-  document.getElementById('fab').style.display=(page==='home'||page==='eventos')?'flex':'none';
+  document.getElementById('fab').style.display=(page==='eventos')?'flex':'none';
   if(page==='home') renderHome();
   else if(page==='eventos') renderEventos();
   else if(page==='alumnos') renderAlumnosPage();
@@ -769,7 +769,7 @@ function evCardHTML(e){
           ${e.curso?`<span>&#128218; ${e.curso}</span>`:''}
           <span>&#128197; ${fmtDate(e.fecha)}</span>
           ${e.hini?`<span>&#9200; ${fmtTime(e.hini)}${e.hfin?'-'+fmtTime(e.hfin):''}</span>`:''}
-          ${e.aula?`<span>&#127eb; ${e.aula}</span>`:''}
+          ${e.aula?`<span>📍 ${e.aula}</span>`:''}
         </div>
       </div>
       <span class="badge ${bc}">${pct}%</span>
