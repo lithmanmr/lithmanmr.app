@@ -374,8 +374,8 @@ textarea.finput{resize:none;min-height:72px}
     <button class="hbtn" id="hdr-add-btn" onclick="showNewEvento()" title="Nuevo evento">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="display:block;color:#F0F6FF"><line x1="12" y1="4" x2="12" y2="20"/><line x1="4" y1="12" x2="20" y2="12"/></svg>
     </button>
-    <button class="hbtn" onclick="openModal('macerca')" title="Acerca de" style="font-size:18px;color:#F0F6FF">
-      ℹ️
+    <button class="hbtn" onclick="openModal('macerca')" title="Acerca de">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" style="display:block;color:#F0F6FF"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
     </button>
   </div>
 </div>
@@ -558,7 +558,7 @@ textarea.finput{resize:none;min-height:72px}
         </p>
       </div>
       <div class="frow">
-        <textarea class="finput" id="imp-txt" style="min-height:160px;font-family:monospace;font-size:13px" placeholder="Pega la lista aqui..."></textarea>
+        <textarea class="finput" id="imp-txt" style="min-height:160px;font-family:monospace;font-size:13px" placeholder="Pega la lista aquí..."></textarea>
       </div>
       <div class="row-btns">
         <button class="btn btn-ghost" onclick="closeModal('mimport')">Cancelar</button>
@@ -585,7 +585,7 @@ textarea.finput{resize:none;min-height:72px}
       <div class="card card-sm" style="margin-bottom:10px">
         <div class="sec-lbl" style="margin-top:0">¿Qué hace esta app?</div>
         <p style="font-size:13px;color:var(--t2);line-height:1.7">
-          AsistAPP es una herramienta de <strong style="color:var(--t1)">asistencia digital sin papel</strong> diseñada para docentes y delegados. Permite crear eventos/sesiones, registrar la asistencia de alumnos (presente, tardanza, ausente) y generar reportes PDF listos para imprimir o compartir.
+          AsistAPP es una herramienta de <strong style="color:var(--t1)">asistencia digital sin papel</strong> diseñada para docentes y delegados. Permite crear eventos/sesiones, registrar la asistencia de alumnos.
         </p>
       </div>
 
@@ -629,7 +629,7 @@ textarea.finput{resize:none;min-height:72px}
         </div>
         <div class="div" style="margin:12px 0"></div>
         <div style="font-size:12px;color:var(--t3);line-height:1.6">
-          Hecho con ❤️ para digitalizar la asistencia universitaria.
+          Hecho con ❤️ para Ingeniería de Minas.
         </div>
       </div>
 
@@ -742,7 +742,7 @@ function renderHome(){
   document.getElementById('s-pdfs').textContent=DB.pdfCount||0;
   const list=document.getElementById('home-list');
   const recent=[...DB.eventos].sort((a,b)=>b.createdAt-a.createdAt).slice(0,4);
-  list.innerHTML=recent.length?recent.map(evCardHTML).join(''):`<div class="empty"><div class="empty-ico">&#128197;</div><div class="empty-t">Sin eventos</div><div class="empty-s">Crea tu primer evento con el boton +</div></div>`;
+  list.innerHTML=recent.length?recent.map(evCardHTML).join(''):`<div class="empty"><div class="empty-ico">&#128197;</div><div class="empty-t">Sin eventos</div><div class="empty-s">Crea tu primer evento con el botón +</div></div>`;
 }
 
 // ========== EVENTOS ==========
